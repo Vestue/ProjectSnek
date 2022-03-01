@@ -13,9 +13,6 @@ namespace Snake_DVA222
 
             // Maybe useful
             ApplicationConfiguration.Initialize();
-
-            // Nah brah
-            //Application.Run(new Form1());
             
             Engine _engine = new Engine();
             _engine.Run();

@@ -10,8 +10,15 @@ namespace Snake_DVA222
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+
+            // Maybe useful
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+
+            // Nah brah
+            //Application.Run(new Form1());
+            
+            Engine _engine = new Engine();
+            _engine.Run();
         }
     }
 }

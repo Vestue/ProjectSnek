@@ -2,8 +2,8 @@
 Snake inspired project for DVA222.
 
 ## Description
-The classic game snake with some new features, never seen before! <br>
-Are you up for the challenge of outplaying your pal?
+The classic game snake with some new features, never seen before! <br><br>
+Are you up for the challenge of outplaying your pal?<br>
 Perhaps a drinking game where all your extra points go to the glass of your opponent?
 
 ## Features

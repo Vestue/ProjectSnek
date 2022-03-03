@@ -9,6 +9,7 @@ namespace Snake_DVA222
     internal class Snake
     {
         Direction Dir;
+        int Points = 0;
         List<Coordinate> BodyCords = new List<Coordinate>();
 
         public Snake(int length, Coordinate startPos, Direction dir)
@@ -37,6 +38,7 @@ namespace Snake_DVA222
                 }
             }
         }
+        public int Points() => Points;
 
         public void Move(int width, int height)
         {
@@ -78,8 +80,8 @@ namespace Snake_DVA222
         public void Hit(int points)
         {
             // Hit() function for Food
-            // int points is just to overload, use whatever is neccesary
-            throw new NotImplementedException();
+            Points += points;
+            // TODO: Add more body parts according to the amount of points
         }
     }
 }

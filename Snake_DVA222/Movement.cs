@@ -13,10 +13,10 @@ namespace Snake_DVA222
             // Kolla om snake är null
 
             // Change method names depending on implementation
-            if (key == ConsoleKey.UpArrow || key == ConsoleKey.W) snake.Move(Direction.Up);
-            else if (key == ConsoleKey.DownArrow || key == ConsoleKey.S) snake.Move(Direction.Down);
-            else if (key == ConsoleKey.LeftArrow || key == ConsoleKey.A) snake.Move(Direction.Left);
-            else if (key == ConsoleKey.RightArrow || key == ConsoleKey.D) snake.Move(Direction.Right);
+            if (key == ConsoleKey.UpArrow || key == ConsoleKey.W) snake.SetDirection(Direction.Up);
+            else if (key == ConsoleKey.DownArrow || key == ConsoleKey.S) snake.SetDirection(Direction.Down);
+            else if (key == ConsoleKey.LeftArrow || key == ConsoleKey.A) snake.SetDirection(Direction.Left);
+            else if (key == ConsoleKey.RightArrow || key == ConsoleKey.D) snake.SetDirection(Direction.Right);
         }
     }
 }

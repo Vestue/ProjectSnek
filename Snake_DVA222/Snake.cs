@@ -37,9 +37,14 @@ namespace Snake_DVA222
             }
         }
 
-        public void Move (Direction dir)
+        public void Move ()
         {
             throw new NotImplementedException();
+        }
+
+        public void SetDirection (Direction dir)
+        {
+            Dir = dir;
         }
     }
 }

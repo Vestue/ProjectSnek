@@ -16,12 +16,14 @@ namespace Snake_DVA222
         List<Snake> _snakes = new List<Snake>;
         List<Food> _food = new List<Food>;
 
-        MainForm _form = new MainForm();
+        MainForm _form;
         System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
         Movement _movement = new Movement();
 
         public void Run()
         {
+            _form = new MainForm(this);
+
             //TODO: Avkommentera efter implementation
             //_form.Paint += Draw;
 

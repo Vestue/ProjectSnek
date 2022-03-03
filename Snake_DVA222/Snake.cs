@@ -12,9 +12,11 @@ namespace Snake_DVA222
         int Points = 0;
         List<Coordinate> BodyCords = new List<Coordinate>();
         int BodyPartsToAdd = 0;
+        public int ID { get; private set; }
 
-        public Snake(int length, Coordinate startPos, Direction dir)
+        public Snake(int length, Coordinate startPos, Direction dir, int playerNumber)
         {
+            ID = playerNumber;
             Dir = dir;
             for (int i = 0; i < length; i++)
             {

@@ -13,11 +13,13 @@ namespace Snake_DVA222
         List<Coordinate> BodyCords = new List<Coordinate>();
         int BodyPartsToAdd = 0;
         public int ID { get; private set; }
+        Engine Engine { get; set; }
 
-        public Snake(int length, Coordinate startPos, Direction dir, int playerNumber)
+        public Snake(int length, Coordinate startPos, Direction dir, int playerNumber, Engine engine)
         {
             ID = playerNumber;
             Dir = dir;
+            Engine = engine;
             for (int i = 0; i < length; i++)
             {
                 // startPos is the position of the head of the snake;
@@ -88,15 +90,14 @@ namespace Snake_DVA222
         private void Hit()
         {
             // Hit function for hitting a wall or bodypart
-            throw new NotImplementedException();
+            Engine.Remove(this);
         }
 
-        public void Hit(int points)
+        public void Hit(int points, int sizeChange)
         {
             // Hit() function for Food
             Points += points;
-            // TODO: Should this be decided by something else? 
-            BodyPartsToAdd += points;
+            BodyPartsToAdd += sizeChange;
         }
 
         public bool SnakeCollide(Snake snake)

@@ -13,7 +13,7 @@ namespace Snake_DVA222
         public int Width { get; private set; }
 
         //TODO: Ändra utifrån implementation
-        List<Snakes> _snakes = new List<Snakes>;
+        List<Snake> _snakes = new List<Snake>;
         List<Food> _food = new List<Food>;
 
         MainForm _form = new MainForm();
@@ -52,9 +52,9 @@ namespace Snake_DVA222
             //TODO: Clear form, spawn snakes and start spawning food
         }
 
-        // Change name later
         private void Move()
         {
+            var snakes = new List<Snake>(_snakes);
             // Assumes snake has a snakeID which can be set in the constructor
 
             //UNDONE: Hur hantera flera inputs samtidigt?
@@ -63,6 +63,13 @@ namespace Snake_DVA222
                 _movement.Move(key, snake);
         }
 
-        //TODO: Collide()
+        private void Collide()
+        {
+            var snakes = new List<Snake>(_snakes);
+            var foodList = new List<Food>(_food);
+            foreach (var food in foodList)
+                foreach (var snake in snakes)
+                    food.TryHit(snake);
+        }
     }
 }

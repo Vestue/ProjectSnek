@@ -18,6 +18,7 @@ namespace Snake_DVA222
 
         MainForm _form = new MainForm();
         System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
+        Movement _movement = new Movement();
 
         public void Run()
         {
@@ -55,8 +56,11 @@ namespace Snake_DVA222
         private void Move()
         {
             // Assumes snake has a snakeID which can be set in the constructor
+
+            // Hur hantera flera inputs samtidigt?
+            var key = Console.ReadKey(true).Key;
             foreach (var snake in _snakes)
-                movement.move(getInput.movement, snake);
+                _movement.Move(key, snake);
         }
     }
 }

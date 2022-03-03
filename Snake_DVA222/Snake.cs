@@ -99,13 +99,14 @@ namespace Snake_DVA222
 
         public bool SnakeCollide(Snake snake)
         {
+            // Works for both other snakes and itself
             if (snake == null) throw new ArgumentNullException();
 
             List<Coordinate> otherBodyCords = snake.GetBodyCords();
 
             for (int i = 0; i < otherBodyCords.Count; i++)
             {
-                // If the snake is checking its own body don't check the head (would always falsely return true)
+                // If the snake is checking its own body then don't check the head (would always falsely return true)
                 if (i == 0 && this == snake) i++;
                 // You only need to check if the head of this snake is hitting 
                 if (BodyCords[0].X == otherBodyCords[i].X && BodyCords[0].Y == otherBodyCords[i].Y)

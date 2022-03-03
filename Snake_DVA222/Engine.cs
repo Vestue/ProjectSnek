@@ -12,7 +12,7 @@ namespace Snake_DVA222
         public int Height { get; private set; }
         public int Width { get; private set; }
 
-        // Ändra utifrån implementation
+        //TODO: Ändra utifrån implementation
         List<Snakes> _snakes = new List<Snakes>;
         List<Food> _food = new List<Food>;
 
@@ -22,7 +22,7 @@ namespace Snake_DVA222
 
         public void Run()
         {
-            // Avkommentera efter implementation
+            //TODO: Avkommentera efter implementation
             //_form.Paint += Draw;
 
             _timer.Tick += TimerEventHandler;
@@ -49,7 +49,7 @@ namespace Snake_DVA222
         {
             AmountOfPlayers = amountOfPlayers;
 
-            // Clear form, spawn snakes and start spawning food
+            //TODO: Clear form, spawn snakes and start spawning food
         }
 
         // Change name later
@@ -57,10 +57,12 @@ namespace Snake_DVA222
         {
             // Assumes snake has a snakeID which can be set in the constructor
 
-            // Hur hantera flera inputs samtidigt?
+            //UNDONE: Hur hantera flera inputs samtidigt?
             var key = Console.ReadKey(true).Key;
             foreach (var snake in _snakes)
                 _movement.Move(key, snake);
         }
+
+        //TODO: Collide()
     }
 }

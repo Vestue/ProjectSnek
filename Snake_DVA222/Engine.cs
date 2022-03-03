@@ -36,6 +36,11 @@ namespace Snake_DVA222
             Width = _form.Width;
         }
 
+        public void Add(Snake snake) => _snakes.Add(snake);
+        public void Add(Food food) => _food.Add(food);
+        public void Remove(Snake snake) => _snakes.Remove(snake);
+        public void Remove(Food food) => _food.Remove(food);
+
         private void Draw(object? sender, PaintEventArgs e)
         {
             throw new NotImplementedException();

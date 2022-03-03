@@ -10,6 +10,7 @@ namespace Snake_DVA222
     {
         Direction Dir;
         List<Coordinate> BodyCords = new List<Coordinate>();
+
         public Snake(int length, Coordinate startPos, Direction dir)
         {
             Dir = dir;
@@ -37,7 +38,7 @@ namespace Snake_DVA222
             }
         }
 
-        public void Move (int width, int height)
+        public void Move(int width, int height)
         {
             // Remove the last body part
             BodyCords.RemoveAt(BodyCords.Count - 1);
@@ -46,19 +47,19 @@ namespace Snake_DVA222
             switch (Dir)
             {
                 case Direction.Up:
-                    if (BodyCords[0].Y - 1 < 0) {  throw new NotImplementedException(); }   // TODO: Add function for snake hitting something
+                    if (BodyCords[0].Y - 1 < 0) {  Hit(); }
                     BodyCords.Insert(0, new Coordinate(BodyCords[0].X, BodyCords[0].Y - 1));
                     break;
                 case Direction.Down:
-                    if (BodyCords[0].Y + 1 > height) { throw new NotImplementedException(); }   // TODO: Add function for snake hitting something
+                    if (BodyCords[0].Y + 1 > height) { Hit(); }
                     BodyCords.Insert(0, new Coordinate(BodyCords[0].X, BodyCords[0].Y + 1));
                     break;
                 case Direction.Left:
-                    if (BodyCords[0].X - 1 < 0) { throw new NotImplementedException(); }   // TODO: Add function for snake hitting something
+                    if (BodyCords[0].X - 1 < 0) { Hit(); }
                     BodyCords.Insert(0, new Coordinate(BodyCords[0].X - 1, BodyCords[0].Y));
                     break;
                 case Direction.Right:
-                    if (BodyCords[0].X + 1 > width) { throw new NotImplementedException(); }   // TODO: Add function for snake hitting something
+                    if (BodyCords[0].X + 1 > width) { Hit(); }
                     BodyCords.Insert(0, new Coordinate(BodyCords[0].X + 1, BodyCords[0].Y));
                     break;
                 default:
@@ -66,9 +67,19 @@ namespace Snake_DVA222
             }
         }
 
-        public void SetDirection (Direction dir)
+        public void SetDirection(Direction dir) => Dir = dir;
+
+        private void Hit()
         {
-            Dir = dir;
+            // Hit function for hitting a wall or bodypart
+            throw new NotImplementedException();
+        }
+
+        public void Hit(int points)
+        {
+            // Hit() function for Food
+            // int points is just to overload, use whatever is neccesary
+            throw new NotImplementedException();
         }
     }
 }

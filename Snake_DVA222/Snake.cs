@@ -11,6 +11,7 @@ namespace Snake_DVA222
         Direction Dir;
         int Points = 0;
         List<Coordinate> BodyCords = new List<Coordinate>();
+        int BodyPartsToAdd = 0;
 
         public Snake(int length, Coordinate startPos, Direction dir)
         {
@@ -38,12 +39,21 @@ namespace Snake_DVA222
                 }
             }
         }
-        public int Points() => Points;
+        public int GetPoints() => Points;
 
         public void Move(int width, int height)
         {
-            // Remove the last body part
-            BodyCords.RemoveAt(BodyCords.Count - 1);
+            // If there are body parts left to add (after food is eaten) 
+            // then don't remove the last one until there are no more body parts to add
+            if (BodyPartsToAdd > 0)
+            {
+                BodyPartsToAdd--;
+            }
+            else
+            {
+                // Remove the last body part
+                BodyCords.RemoveAt(BodyCords.Count - 1);
+            }
 
             // Add a new body part in front of the head in the direction the snake is going in
             switch (Dir)
@@ -81,7 +91,8 @@ namespace Snake_DVA222
         {
             // Hit() function for Food
             Points += points;
-            // TODO: Add more body parts according to the amount of points
+            // TODO: Should this be decided by something else? 
+            BodyPartsToAdd += points;
         }
     }
 }

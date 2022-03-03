@@ -37,9 +37,33 @@ namespace Snake_DVA222
             }
         }
 
-        public void Move ()
+        public void Move (int width, int height)
         {
-            throw new NotImplementedException();
+            // Remove the last body part
+            BodyCords.RemoveAt(BodyCords.Count - 1);
+
+            // Add a new body part in front of the head in the direction the snake is going in
+            switch (Dir)
+            {
+                case Direction.Up:
+                    if (BodyCords[0].Y - 1 < 0) {  throw new NotImplementedException(); }   // TODO: Add function for snake hitting something
+                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X, BodyCords[0].Y - 1));
+                    break;
+                case Direction.Down:
+                    if (BodyCords[0].Y + 1 > height) { throw new NotImplementedException(); }   // TODO: Add function for snake hitting something
+                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X, BodyCords[0].Y + 1));
+                    break;
+                case Direction.Left:
+                    if (BodyCords[0].X - 1 < 0) { throw new NotImplementedException(); }   // TODO: Add function for snake hitting something
+                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X - 1, BodyCords[0].Y));
+                    break;
+                case Direction.Right:
+                    if (BodyCords[0].X + 1 > width) { throw new NotImplementedException(); }   // TODO: Add function for snake hitting something
+                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X + 1, BodyCords[0].Y));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public void SetDirection (Direction dir)

@@ -11,7 +11,6 @@ namespace Snake_DVA222
         Direction Dir;
         int Points = 0;
         List<Coordinate> BodyCords = new List<Coordinate>();
-        // TODO: Add support for negative BodyPartsToAdd
         int BodyPartsToAdd = 0;
 
         public Snake(int length, Coordinate startPos, Direction dir)
@@ -49,6 +48,12 @@ namespace Snake_DVA222
             if (BodyPartsToAdd > 0)
             {
                 BodyPartsToAdd--;
+            }
+            else if (BodyPartsToAdd < 0)
+            {
+                BodyPartsToAdd++;
+                BodyCords.RemoveAt(BodyCords.Count - 1);    // TODO: Better way to write this?
+                BodyCords.RemoveAt(BodyCords.Count - 1);
             }
             else
             {

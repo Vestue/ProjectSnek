@@ -60,6 +60,8 @@ namespace Snake_DVA222
             // Assumes snake has a snakeID which can be set in the constructor
 
             //UNDONE: Hur hantera flera inputs samtidigt?
+
+            //TODO: Denna kommer fastna med att vänta på input, lägg till keyavaible grej
             var key = Console.ReadKey(true).Key;
             foreach (var snake in _snakes)
                 _movement.Move(key, snake);

@@ -8,6 +8,14 @@ namespace Snake_DVA222
 {
     internal class Engine
     {
+        public int AmountOfPlayers { get; private set; }
+        public int Height { get; private set; }
+        public int Width { get; private set; }
+
+        // Ändra utifrån implementation
+        List<Snakes> _snakes = new List<Snakes>;
+        List<Food> _food = new List<Food>;
+
         MainForm _form = new MainForm();
         System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
 
@@ -20,6 +28,9 @@ namespace Snake_DVA222
             _timer.Interval = 1000 / 30; // 30 fps lets goo
             _timer.Start();
             Application.Run(_form);
+
+            Height = _form.Height;
+            Width = _form.Width;
         }
 
         private void Draw(object? sender, PaintEventArgs e)
@@ -31,6 +42,21 @@ namespace Snake_DVA222
         {
             
             _form.Refresh();
+        }
+
+        public void StartGame(int amountOfPlayers)
+        {
+            AmountOfPlayers = amountOfPlayers;
+
+            // Clear form, spawn snakes and start spawning food
+        }
+
+        // Change name later
+        private void Move()
+        {
+            // Assumes snake has a snakeID which can be set in the constructor
+            foreach (var snake in _snakes)
+                movement.move(getInput.movement, snake);
         }
     }
 }

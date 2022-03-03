@@ -13,8 +13,8 @@ namespace Snake_DVA222
         public int Width { get; private set; }
 
         //TODO: Ändra utifrån implementation
-        List<Snake> _snakes = new List<Snake>;
-        List<Food> _food = new List<Food>;
+        List<Snake> _snakes = new List<Snake>();
+        List<Food> _food = new List<Food>();
 
         MainForm _form;
         System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();

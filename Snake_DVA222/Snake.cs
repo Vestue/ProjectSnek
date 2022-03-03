@@ -11,6 +11,7 @@ namespace Snake_DVA222
         Direction Dir;
         int Points = 0;
         List<Coordinate> BodyCords = new List<Coordinate>();
+        // TODO: Add support for negative BodyPartsToAdd
         int BodyPartsToAdd = 0;
 
         public Snake(int length, Coordinate startPos, Direction dir)
@@ -89,12 +90,11 @@ namespace Snake_DVA222
             throw new NotImplementedException();
         }
 
-        public void Hit(int points)
+        public void Hit(int points, int lengthIncrease)
         {
             // Hit() function for Food
             Points += points;
-            // TODO: Should this be decided by something else? 
-            BodyPartsToAdd += points;
+            BodyPartsToAdd += lengthIncrease;
         }
 
         public bool SnakeCollide(Snake snake)

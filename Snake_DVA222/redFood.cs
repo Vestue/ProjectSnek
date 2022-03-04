@@ -37,5 +37,10 @@ namespace Snake_DVA222
 
             return value;
         }
+
+        public void TryHit(Snake snake)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

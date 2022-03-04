@@ -10,15 +10,8 @@ namespace Snake_DVA222
 {
     internal interface IFood
     {
-        
         void Draw(Graphics g);
 
-       6
-
         int returnPoints();
-
-
-
-
     }
 }

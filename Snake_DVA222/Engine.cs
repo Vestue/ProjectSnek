@@ -61,8 +61,6 @@ namespace Snake_DVA222
             AmountOfPlayers = amountOfPlayers;
 
             //TODO: Start spawning food
-
-            // Now clears form.
             for (int i = 0; i < amountOfPlayers; i++)
             {
                 var snake = new Snake(snakeStartLength, new Coordinate(i*i*i, i*i*i), i+1, this);

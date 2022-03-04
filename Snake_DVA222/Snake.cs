@@ -132,7 +132,7 @@ namespace Snake_DVA222
         {
             for(int i = 0; i < BodyCords.Count - 1; i++)
             {
-                g.DrawRectangle(pen, BodyCords[i].X, BodyCords[i].Y, rectangleWidth, rectangleWidth);
+                g.DrawRectangle(pen, BodyCords[i].X * rectangleWidth, BodyCords[i].Y * rectangleWidth, rectangleWidth, rectangleWidth);
             }
         }
     }

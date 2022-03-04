@@ -10,7 +10,7 @@ namespace Snake_DVA222
     {
         Direction Dir;
         Pen pen = new Pen(Color.Purple);
-        int Points = 0;
+        public int Points { get; set; } = 0;
         List<Coordinate> BodyCords = new List<Coordinate>();
         int BodyPartsToAdd = 0;
         public int ID { get; private set; }

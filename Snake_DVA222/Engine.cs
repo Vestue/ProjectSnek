@@ -68,6 +68,17 @@ namespace Snake_DVA222
 
                 _food.Add(new orangeFood(5, 5));
             }
+            RunGame();
+        }
+
+        private void RunGame()
+        {
+            while (_snakes != null)
+            {
+                Move();
+                Collide();
+            }
+            // Draw should be added here and something something
         }
 
         private void Move()

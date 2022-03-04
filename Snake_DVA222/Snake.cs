@@ -9,6 +9,7 @@ namespace Snake_DVA222
     internal class Snake
     {
         Direction Dir;
+        Pen pen = new Pen(Color.Purple);
         int Points = 0;
         List<Coordinate> BodyCords = new List<Coordinate>();
         int BodyPartsToAdd = 0;
@@ -125,6 +126,14 @@ namespace Snake_DVA222
                 }
             }
             return false;
+        }
+
+        public void Draw(Graphics g, int rectangleWidth)
+        {
+            for(int i = 0; i < BodyCords.Count - 1; i++)
+            {
+                g.DrawRectangle(pen, BodyCords[i].X, BodyCords[i].Y, rectangleWidth, rectangleWidth);
+            }
         }
     }
 }

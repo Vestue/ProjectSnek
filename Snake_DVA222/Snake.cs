@@ -53,6 +53,12 @@ namespace Snake_DVA222
             {
                 BodyPartsToAdd--;
             }
+            else if (BodyPartsToAdd < 0)
+            {
+                BodyPartsToAdd++;
+                BodyCords.RemoveAt(BodyCords.Count - 1);    // TODO: Better way to write this?
+                BodyCords.RemoveAt(BodyCords.Count - 1);
+            }
             else
             {
                 // Remove the last body part
@@ -93,11 +99,11 @@ namespace Snake_DVA222
             Engine.Remove(this);
         }
 
-        public void Hit(int points, int sizeChange)
+        public void Hit(int points, int lengthIncrease)
         {
             // Hit() function for Food
             Points += points;
-            BodyPartsToAdd += sizeChange;
+            BodyPartsToAdd += lengthIncrease;
         }
 
         public bool SnakeCollide(Snake snake)

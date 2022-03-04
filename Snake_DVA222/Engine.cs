@@ -62,14 +62,13 @@ namespace Snake_DVA222
         private void Move()
         {
             var snakes = new List<Snake>(_snakes);
-            // Assumes snake has a snakeID which can be set in the constructor
 
-            //UNDONE: Hur hantera flera inputs samtidigt?
-
-            //TODO: Denna kommer fastna med att vänta på input, lägg till keyavaible grej
-            var key = Console.ReadKey(true).Key;
-            foreach (var snake in _snakes)
-                _movement.Move(key, snake);
+            while (Console.KeyAvailable)
+            {
+                var key = Console.ReadKey(true).Key;
+                foreach (var snake in _snakes)
+                    _movement.Move(key, snake);
+            }
         }
 
         private void Collide()

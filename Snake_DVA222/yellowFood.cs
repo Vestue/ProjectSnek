@@ -33,11 +33,16 @@ namespace Snake_DVA222
         }
 
         
-        public int returnpoints()
+        public int returnPoints()
         {
             value = 1;
 
             return value;
+        }
+
+        public void TryHit(Snake snake)
+        {
+            throw new NotImplementedException();
         }
     }
 }

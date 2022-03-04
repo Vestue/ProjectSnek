@@ -14,7 +14,7 @@ namespace Snake_DVA222
 
         //TODO: Ändra utifrån implementation
         List<Snake> _snakes = new List<Snake>();
-        List<Food> _food = new List<Food>();
+        List<IFood> _food = new List<IFood>();
 
         MainForm _form;
         System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
@@ -37,9 +37,9 @@ namespace Snake_DVA222
         }
 
         public void Add(Snake snake) => _snakes.Add(snake);
-        public void Add(Food food) => _food.Add(food);
+        public void Add(IFood food) => _food.Add(food);
         public void Remove(Snake snake) => _snakes.Remove(snake);
-        public void Remove(Food food) => _food.Remove(food);
+        public void Remove(IFood food) => _food.Remove(food);
 
         private void Draw(object? sender, PaintEventArgs e)
         {
@@ -62,20 +62,19 @@ namespace Snake_DVA222
         private void Move()
         {
             var snakes = new List<Snake>(_snakes);
-            // Assumes snake has a snakeID which can be set in the constructor
 
-            //UNDONE: Hur hantera flera inputs samtidigt?
-
-            //TODO: Denna kommer fastna med att vänta på input, lägg till keyavaible grej
-            var key = Console.ReadKey(true).Key;
-            foreach (var snake in _snakes)
-                _movement.Move(key, snake);
+            while (Console.KeyAvailable)
+            {
+                var key = Console.ReadKey(true).Key;
+                foreach (var snake in _snakes)
+                    _movement.Move(key, snake);
+            }
         }
 
         private void Collide()
         {
             var snakes = new List<Snake>(_snakes);
-            var foodList = new List<Food>(_food);
+            var foodList = new List<IFood>(_food);
             foreach (var food in foodList)
                 foreach (var snake in snakes)
                     food.TryHit(snake);

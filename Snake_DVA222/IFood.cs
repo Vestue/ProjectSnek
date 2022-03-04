@@ -13,5 +13,7 @@ namespace Snake_DVA222
         void Draw(Graphics g);
 
         int returnPoints();
+
+        void TryHit(Snake snake);
     }
 }

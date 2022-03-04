@@ -57,6 +57,7 @@ namespace Snake_DVA222
             AmountOfPlayers = amountOfPlayers;
 
             //TODO: Clear form, spawn snakes and start spawning food
+            
         }
 
         private void Move()

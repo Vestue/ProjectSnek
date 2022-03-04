@@ -82,6 +82,7 @@
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "Play Snake";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // pictureBox1
             // 

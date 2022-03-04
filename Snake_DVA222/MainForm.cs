@@ -17,11 +17,13 @@ namespace Snake_DVA222
 
         private void button1_Click(object sender, EventArgs e)
         {
+            ClearForm();
             _engine.StartGame(1);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            ClearForm();
             _engine.StartGame(2);
         }
 
@@ -33,6 +35,25 @@ namespace Snake_DVA222
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ClearForm()
+        {
+            pictureBox1.Enabled = false;
+            pictureBox1.Visible = false;
+            button1.Enabled = false;
+            button1.Visible = false;
+            button2.Enabled = false;
+            button2.Visible = false;
+            button3.Enabled = false;
+            button3.Visible = false;
+            textBox1.Visible = false;
+            textBox1.Enabled = false;
         }
     }
 }

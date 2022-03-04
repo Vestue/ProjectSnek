@@ -13,6 +13,8 @@ namespace Snake_DVA222
         {
             Width = width;
             Height = height;
+
+            IGridable[,] Square = new IGridable[Width, Height];
         }
     }
 }

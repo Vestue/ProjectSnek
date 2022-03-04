@@ -16,10 +16,10 @@ namespace Snake_DVA222
         public int ID { get; private set; }
         Engine Engine { get; set; }
 
-        public Snake(int length, Coordinate startPos, Direction dir, int playerNumber, Engine engine)
+        public Snake(int length, Coordinate startPos, int playerNumber, Engine engine)
         {
             ID = playerNumber;
-            Dir = dir;
+            Dir = Direction.Right;
             Engine = engine;
             for (int i = 0; i < length; i++)
             {

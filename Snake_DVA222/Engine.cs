@@ -11,6 +11,8 @@ namespace Snake_DVA222
         public int AmountOfPlayers { get; private set; }
         public int Height { get; private set; }
         public int Width { get; private set; }
+        private int snakeStartLength = 5;
+
 
         //TODO: Ändra utifrån implementation
         List<Snake> _snakes = new List<Snake>();
@@ -50,6 +52,8 @@ namespace Snake_DVA222
         {
             
             _form.Refresh();
+            Collide();
+            Move();
         }
 
         public void StartGame(int amountOfPlayers)
@@ -57,6 +61,13 @@ namespace Snake_DVA222
             AmountOfPlayers = amountOfPlayers;
 
             //TODO: Clear form, spawn snakes and start spawning food
+
+            // Now clears form.
+            for (int i = 0; i < amountOfPlayers; i++)
+            {
+                var snake = new Snake(snakeStartLength, new Coordinate(i*i*i, i*i*i), i+1, this);
+                this.Add(snake);
+            }
             
         }
 

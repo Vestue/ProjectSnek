@@ -25,13 +25,6 @@ namespace Snake_DVA222
         public void Run()
         {
             _form = new MainForm(this);
-
-            //TODO: Avkommentera efter implementation
-            //_form.Paint += Draw;
-
-            _timer.Tick += TimerEventHandler;
-            _timer.Interval = 1000 / 30; // 30 fps lets goo
-            _timer.Start();
             Application.Run(_form);
 
             Height = _form.Height;
@@ -58,6 +51,13 @@ namespace Snake_DVA222
 
         public void StartGame(int amountOfPlayers)
         {
+            //TODO: Avkommentera efter implementation
+            //_form.Paint += Draw;
+
+            _timer.Tick += TimerEventHandler;
+            _timer.Interval = 1000 / 30; // 30 fps lets goo
+            _timer.Start();
+
             AmountOfPlayers = amountOfPlayers;
 
             //TODO: Start spawning food
@@ -68,9 +68,11 @@ namespace Snake_DVA222
 
                 _food.Add(new orangeFood(5, 5));
             }
-            RunGame();
+            //RunGame();
         }
 
+
+        /* Detta hanteras genom timern
         private void RunGame()
         {
             while (_snakes != null)
@@ -79,7 +81,7 @@ namespace Snake_DVA222
                 Collide();
             }
             // Draw should be added here and something something
-        }
+        }*/
 
         private void Move()
         {

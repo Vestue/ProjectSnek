@@ -46,11 +46,12 @@ namespace Snake_DVA222
             
             _form.Refresh();
             Collide();
-            Move();
         }
 
         public void StartGame(int amountOfPlayers)
         {
+            _form.KeyDown += KeyEventHandler;
+
             //TODO: Avkommentera efter implementation
             //_form.Paint += Draw;
 
@@ -68,31 +69,14 @@ namespace Snake_DVA222
 
                 _food.Add(new orangeFood(5, 5));
             }
-            //RunGame();
         }
 
-
-        /* Detta hanteras genom timern
-        private void RunGame()
-        {
-            while (_snakes != null)
-            {
-                Move();
-                Collide();
-            }
-            // Draw should be added here and something something
-        }*/
-
-        private void Move()
+        // This is triggered every time a key is pressed down after the game has been started.
+        private void KeyEventHandler(object? sender, KeyEventArgs e)
         {
             var snakes = new List<Snake>(_snakes);
-
-            while (Console.KeyAvailable)
-            {
-                var key = Console.ReadKey(true).Key;
-                foreach (var snake in _snakes)
-                    _movement.Move(key, snake);
-            }
+            foreach(var snake in _snakes)
+                _movement.Move(e, snake);
         }
 
         private void Collide()

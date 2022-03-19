@@ -38,7 +38,12 @@ namespace Snake_DVA222
 
         private void Draw(object? sender, PaintEventArgs e)
         {
-            throw new NotImplementedException();
+            var snakes = new List<Snake>(_snakes);
+            var foods = new List<IFood>(_food);
+            foreach (var snake in snakes)
+                snake.Draw(e.Graphics, Width);
+            foreach (var food in foods)
+                food.Draw(e.Graphics);
         }
 
         private void TimerEventHandler(object? sender, EventArgs e)
@@ -51,9 +56,7 @@ namespace Snake_DVA222
         public void StartGame(int amountOfPlayers)
         {
             _form.KeyDown += KeyEventHandler;
-
-            //TODO: Avkommentera efter implementation
-            //_form.Paint += Draw;
+            _form.Paint += Draw;
 
             _timer.Tick += TimerEventHandler;
             _timer.Interval = 1000 / 30; // 30 fps lets goo

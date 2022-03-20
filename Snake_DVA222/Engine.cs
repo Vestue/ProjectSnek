@@ -64,15 +64,23 @@ namespace Snake_DVA222
             _timer.Start();
 
             AmountOfPlayers = amountOfPlayers;
-
-            //TODO: Start spawning food
+            Coordinate snakeCoordinate;
             for (int i = 0; i < amountOfPlayers; i++)
             {
-                var snake = new Snake(snakeStartLength, new Coordinate(i*i*i, i*i*i), i+1, this);
-                Add(snake);
+                if (i % 2 == 0)
+                {
+                    // -10 is needed so that each "set" of snakes spawn with the same offset from the center.
+                    snakeCoordinate = new Coordinate(Width / 2 - 10 - i * 10, Height / 2);
+                }
+                else
+                {
+                    snakeCoordinate = new Coordinate(Width / 2 + i * 10, Height / 2);
+                }
 
-                Add(new orangeFood(5, 5));
+                var snake = new Snake(snakeStartLength, snakeCoordinate, i+1, this);
+                Add(snake);
             }
+            Add(new orangeFood(Width / 2, Height / 2));
         }
 
         // This is triggered every time a key is pressed down after the game has been started.
@@ -98,7 +106,8 @@ namespace Snake_DVA222
 
         private void Move()
         {
-            foreach (var snake in _snakes) snake.Move(Width, Height);
+            var snakes = new List<Snake>(_snakes);
+            foreach (var snake in snakes) snake.Move(Width, Height);
         }
 
         private void SpawnFood()

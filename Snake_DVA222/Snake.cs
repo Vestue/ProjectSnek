@@ -128,11 +128,11 @@ namespace Snake_DVA222
             return false;
         }
 
-        public void Draw(Graphics g, int rectangleWidth)
+        public void Draw(Graphics g)
         {
             for(int i = 0; i < BodyCords.Count - 1; i++)
             {
-                g.DrawRectangle(pen, BodyCords[i].X * rectangleWidth, BodyCords[i].Y * rectangleWidth, rectangleWidth, rectangleWidth);
+                g.DrawRectangle(pen, BodyCords[i].X, BodyCords[i].Y, Engine.ObjectSize, Engine.ObjectSize);
             }
         }
     }

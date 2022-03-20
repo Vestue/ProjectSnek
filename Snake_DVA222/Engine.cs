@@ -12,7 +12,7 @@ namespace Snake_DVA222
         public int Height { get; private set; }
         public int Width { get; private set; }
         private int snakeStartLength = 5;
-        private int _snakeWidth = 1;
+        public int ObjectSize { get; } = 20;
 
         List<Snake> _snakes = new List<Snake>();
         List<IFood> _food = new List<IFood>();
@@ -40,9 +40,8 @@ namespace Snake_DVA222
             var snakes = new List<Snake>(_snakes);
             var foods = new List<IFood>(_food);
             
-            //UNDONE: Not sure what the width should be here
             foreach (var snake in snakes)
-                snake.Draw(e.Graphics, _snakeWidth);
+                snake.Draw(e.Graphics);
             foreach (var food in foods)
                 food.Draw(e.Graphics);
         }

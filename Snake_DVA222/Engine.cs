@@ -20,14 +20,14 @@ namespace Snake_DVA222
         System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
         Movement _movement = new Movement();
 
-        public void Run()
+        public Engine()
         {
             _form = new MainForm(this);
-            Application.Run(_form);
-
             Height = _form.Height;
             Width = _form.Width;
         }
+
+        public void Run() => Application.Run(_form);
 
         public void Add(Snake snake) => _snakes.Add(snake);
         public void Add(IFood food) => _food.Add(food);

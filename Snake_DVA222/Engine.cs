@@ -51,6 +51,7 @@ namespace Snake_DVA222
             _form.Refresh();
             Collide();
             Move();
+            SpawnFood();
         }
 
         public void StartGame(int amountOfPlayers)
@@ -98,6 +99,33 @@ namespace Snake_DVA222
         private void Move()
         {
             foreach (var snake in _snakes) snake.Move(Width, Height);
+        }
+
+        private void SpawnFood()
+        {
+            // This can be changed depending on how much food should be spawned.
+            // Could be a setting depending on player amount etc.
+            if (_food.Count >= 1) return;
+
+            var snakes = new List<Snake>(_snakes);
+            List<Coordinate> snakeCoords = new List<Coordinate>();
+            foreach (var snake in snakes) snakeCoords.AddRange(snake.GetBodyCords());
+
+            Coordinate foodCoordinate;
+            Random rand = new Random();
+            do
+            {
+                // This randomization should use the min and max x-y values of the game area,
+                // not sure if it currently does this.
+                foodCoordinate = new Coordinate(rand.Next(0, Width), rand.Next(0, Height));
+            } while (snakeCoords.Contains(foodCoordinate));
+
+            // Should a food randomize its own type in the constructor?
+            var foodType = rand.Next(0, 2);
+            // This would be prettier using an enum
+            if (foodType == 0) Add(new yellowFood(foodCoordinate.X, foodCoordinate.Y));
+            else if (foodType == 1) Add(new orangeFood(foodCoordinate.X, foodCoordinate.Y));
+            else Add(new redFood(foodCoordinate.X, foodCoordinate.Y));
         }
     }
 }

@@ -38,8 +38,10 @@ namespace Snake_DVA222
         {
             var snakes = new List<Snake>(_snakes);
             var foods = new List<IFood>(_food);
+            
+            //UNDONE: Not sure what the width should be here
             foreach (var snake in snakes)
-                snake.Draw(e.Graphics, Width);
+                snake.Draw(e.Graphics, 1);
             foreach (var food in foods)
                 food.Draw(e.Graphics);
         }

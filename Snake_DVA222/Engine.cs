@@ -66,9 +66,9 @@ namespace Snake_DVA222
             for (int i = 0; i < amountOfPlayers; i++)
             {
                 var snake = new Snake(snakeStartLength, new Coordinate(i*i*i, i*i*i), i+1, this);
-                _snakes.Add(snake);
+                Add(snake);
 
-                _food.Add(new orangeFood(5, 5));
+                Add(new orangeFood(5, 5));
             }
         }
 

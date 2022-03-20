@@ -52,10 +52,7 @@ namespace Snake_DVA222
             Collide();
             Move();
             TrySpawnFood();
-
-            // Currently triggers just after start
-            //TODO: Uncomment when spawning issues are fixed.
-            //if (_snakes.Count < 1) GameOver();
+            if (_snakes.Count < 1) GameOver();
         }
 
         public void StartGame(int amountOfPlayers)

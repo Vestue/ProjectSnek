@@ -51,7 +51,11 @@ namespace Snake_DVA222
             _form.Refresh();
             Collide();
             Move();
-            SpawnFood();
+            TrySpawnFood();
+
+            // Currently triggers just after start
+            //TODO: Uncomment when spawning issues are fixed.
+            //if (_snakes.Count < 1) GameOver();
         }
 
         public void StartGame(int amountOfPlayers)
@@ -76,9 +80,7 @@ namespace Snake_DVA222
                 {
                     snakeCoordinate = new Coordinate(Width / 2 + i * 10, Height / 2);
                 }
-
-                var snake = new Snake(snakeStartLength, snakeCoordinate, i+1, this);
-                Add(snake);
+                Add(new Snake(snakeStartLength, snakeCoordinate, i+1, this));
             }
             Add(new orangeFood(Width / 2, Height / 2));
         }
@@ -110,7 +112,7 @@ namespace Snake_DVA222
             foreach (var snake in snakes) snake.Move(Width, Height);
         }
 
-        private void SpawnFood()
+        private void TrySpawnFood()
         {
             // This can be changed depending on how much food should be spawned.
             // Could be a setting depending on player amount etc.
@@ -135,6 +137,13 @@ namespace Snake_DVA222
             if (foodType == 0) Add(new yellowFood(foodCoordinate.X, foodCoordinate.Y));
             else if (foodType == 1) Add(new orangeFood(foodCoordinate.X, foodCoordinate.Y));
             else Add(new redFood(foodCoordinate.X, foodCoordinate.Y));
+        }
+
+        private void GameOver()
+        {
+            _snakes.Clear();
+            _food.Clear();
+            _form.RestartMenu();
         }
     }
 }

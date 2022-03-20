@@ -55,5 +55,19 @@ namespace Snake_DVA222
             textBox1.Visible = false;
             textBox1.Enabled = false;
         }
+
+        public void RestartMenu()
+        {
+            pictureBox1.Enabled = true;
+            pictureBox1.Visible = true;
+            button1.Enabled = true;
+            button1.Visible = true;
+            button2.Enabled = true;
+            button2.Visible = true;
+            button3.Enabled = true;
+            button3.Visible = true;
+            textBox1.Visible = true;
+            textBox1.Enabled = true;
+        }
     }
 }

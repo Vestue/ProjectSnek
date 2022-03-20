@@ -81,11 +81,16 @@ namespace Snake_DVA222
 
         private void Collide()
         {
+            // Try doing this without the temp lists if collisions do not trigger things as they should.
             var snakes = new List<Snake>(_snakes);
             var foodList = new List<IFood>(_food);
+            
             foreach (var food in foodList)
                 foreach (var snake in snakes)
                     food.TryHit(snake);
+            foreach (var snake in snakes)
+                foreach (var otherSnake in snakes)
+                    snake.SnakeCollide(otherSnake);
         }
 
         private void Move()

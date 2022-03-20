@@ -109,6 +109,9 @@ namespace Snake_DVA222
 
         public bool SnakeCollide(Snake snake)
         {
+            // To simplify the iteration
+            if (ID == snake.ID) return false;
+            
             // Works for both other snakes and itself
             if (snake == null) throw new ArgumentNullException();
 

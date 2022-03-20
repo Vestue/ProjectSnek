@@ -13,8 +13,6 @@ namespace Snake_DVA222
         public int Width { get; private set; }
         private int snakeStartLength = 5;
 
-
-        //TODO: Ändra utifrån implementation
         List<Snake> _snakes = new List<Snake>();
         List<IFood> _food = new List<IFood>();
 
@@ -48,9 +46,9 @@ namespace Snake_DVA222
 
         private void TimerEventHandler(object? sender, EventArgs e)
         {
-            
             _form.Refresh();
             Collide();
+            Move();
         }
 
         public void StartGame(int amountOfPlayers)
@@ -77,7 +75,6 @@ namespace Snake_DVA222
         // This is triggered every time a key is pressed down after the game has been started.
         private void KeyEventHandler(object? sender, KeyEventArgs e)
         {
-            var snakes = new List<Snake>(_snakes);
             foreach(var snake in _snakes)
                 _movement.Move(e, snake);
         }
@@ -89,6 +86,11 @@ namespace Snake_DVA222
             foreach (var food in foodList)
                 foreach (var snake in snakes)
                     food.TryHit(snake);
+        }
+
+        private void Move()
+        {
+            foreach (var snake in _snakes) snake.Move(Width, Height);
         }
     }
 }

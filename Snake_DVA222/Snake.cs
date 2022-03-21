@@ -109,6 +109,9 @@ namespace Snake_DVA222
             // Hit() function for Food
             Points += points;
             BodyPartsToAdd += lengthIncrease;
+
+            if (BodyCords == null)
+                Engine.Remove(this);
         }
 
         public bool SnakeCollide(Snake snake)

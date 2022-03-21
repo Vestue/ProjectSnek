@@ -3,13 +3,15 @@ namespace Snake_DVA222
     internal static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
+        ///  Snake made by Group 22:
+        ///  - Oscar Einarsson
+        ///  - Casper Norén
+        ///  - Ragnar Winblad von Walter
+        ///  Casper 
         /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             
             Engine _engine = new Engine();

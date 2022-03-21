@@ -43,7 +43,7 @@ namespace Snake_DVA222
         {
 
             snake.Hit(points, value);
-            Engine.Remove(this);
+            //Engine.Remove(this);
         }
         public int returnPoints()
         {

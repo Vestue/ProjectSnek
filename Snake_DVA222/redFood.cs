@@ -75,7 +75,7 @@ namespace Snake_DVA222
         public void TryHit(Snake snake)
         {
             snake.Hit(points, value);
-            Engine.Remove(this);
+            //Engine.Remove(this);
 
 
         }

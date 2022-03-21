@@ -9,30 +9,25 @@ using System.Drawing;
 
 namespace Snake_DVA222
 {
-    internal class Food : IFood
+    internal class Food
     {
 
         SolidBrush pen = new SolidBrush(Color.White);
+        Pen outline = new Pen(Color.Black);
         int value;
         int points;
         Random random = new Random();
         int color;
-        Engine Engine;
-
-
+        
         Rectangle Square = new Rectangle();
-     
-        
-        
-        
-       
+        Engine Engine;
        public Food(int x, int y, Engine engine)
         {
             Engine = engine;
-            Square.Width = Engine.GameObjectSize-1;
-           Square.Height = Engine.GameObjectSize-1;                   
+            Square.Width = Engine.GameObjectSize;
+            Square.Height = Engine.GameObjectSize;
             Square.X = x;
-            Square.Y = y;         
+            Square.Y = y;
             color = random.Next(0, 3);
             switch (color)
             {
@@ -64,11 +59,10 @@ namespace Snake_DVA222
         public void Draw(Graphics g)
         {
                  
-            g.FillRectangle(pen, Square);          
-            ControlPaint.DrawBorder(g, Square, Color.Black, ButtonBorderStyle.Solid);
+            g.FillRectangle(pen, Square);        
 
-
-
+           
+            
 
         }
 

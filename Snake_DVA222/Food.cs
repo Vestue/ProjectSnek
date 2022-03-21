@@ -11,7 +11,6 @@ namespace Snake_DVA222
 {
     internal class Food : IFood
     {
-
         SolidBrush pen = new SolidBrush(Color.White);
         int value;
         int points;
@@ -48,10 +47,6 @@ namespace Snake_DVA222
                     
                     break;
             }
-
-            
-            
-
         }
 
 

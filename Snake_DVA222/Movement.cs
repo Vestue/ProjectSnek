@@ -10,8 +10,6 @@ namespace Snake_DVA222
     {
         public void Move(KeyEventArgs key, Snake snake)
         {
-            // Kolla om snake är null
-
            if(key == null)
             {
                 snake.SetDirection(Direction.Right);

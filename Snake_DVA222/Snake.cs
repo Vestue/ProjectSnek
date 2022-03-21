@@ -10,7 +10,6 @@ namespace Snake_DVA222
     {
         Direction Dir;
         SolidBrush pen = new SolidBrush(Color.Purple);
-
         
         public int Points { get; set; } = 0;
         List<Coordinate> BodyCords = new List<Coordinate>();
@@ -60,7 +59,7 @@ namespace Snake_DVA222
             else if (BodyPartsToAdd < 0)
             {
                 BodyPartsToAdd++;
-                BodyCords.RemoveAt(BodyCords.Count - 1);    // TODO: Better way to write this?
+                BodyCords.RemoveAt(BodyCords.Count - 1);
                 BodyCords.RemoveAt(BodyCords.Count - 1);
             }
             else

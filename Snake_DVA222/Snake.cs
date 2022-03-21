@@ -28,16 +28,16 @@ namespace Snake_DVA222
                 switch(Dir)
                 {
                     case Direction.Up:
-                        BodyCords.Add(new Coordinate(startPos.X, startPos.Y + i));
+                        BodyCords.Add(new Coordinate(startPos.X, startPos.Y + i * Engine.GameObjectSize));
                         break;
                     case Direction.Down:
-                        BodyCords.Add(new Coordinate(startPos.X, startPos.Y - i));
+                        BodyCords.Add(new Coordinate(startPos.X, startPos.Y - i * Engine.GameObjectSize));
                         break;
                     case Direction.Left:
-                        BodyCords.Add(new Coordinate(startPos.X + i, startPos.Y));
+                        BodyCords.Add(new Coordinate(startPos.X + i * Engine.GameObjectSize, startPos.Y));
                         break;
                     case Direction.Right:
-                        BodyCords.Add(new Coordinate(startPos.X - i, startPos.Y));
+                        BodyCords.Add(new Coordinate(startPos.X - i * Engine.GameObjectSize, startPos.Y));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -71,19 +71,19 @@ namespace Snake_DVA222
             {
                 case Direction.Up:
                     if (BodyCords[0].Y - 1 < 0) {  Hit(); }
-                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X, BodyCords[0].Y - 1));
+                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X, BodyCords[0].Y - Engine.GameObjectSize));
                     break;
                 case Direction.Down:
                     if (BodyCords[0].Y + 1 > height) { Hit(); }
-                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X, BodyCords[0].Y + 1));
+                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X, BodyCords[0].Y + Engine.GameObjectSize));
                     break;
                 case Direction.Left:
                     if (BodyCords[0].X - 1 < 0) { Hit(); }
-                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X - 1, BodyCords[0].Y));
+                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X - Engine.GameObjectSize, BodyCords[0].Y));
                     break;
                 case Direction.Right:
                     if (BodyCords[0].X + 1 > width) { Hit(); }
-                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X + 1, BodyCords[0].Y));
+                    BodyCords.Insert(0, new Coordinate(BodyCords[0].X + Engine.GameObjectSize, BodyCords[0].Y));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

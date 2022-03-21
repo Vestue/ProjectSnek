@@ -162,9 +162,9 @@ namespace Snake_DVA222
         public string GetScoreString()
         {
             var snakes = new List<Snake>(_snakes);
-            string scoreString = "Score:\r\n";
+            string scoreString = "";
             foreach (var snake in snakes)
-                scoreString += $"\r\nPlayer {snake.ID}: {snake.GetPoints}";
+                scoreString += $"Player {snake.ID}: {snake.Points}\r\n";
             return scoreString;
         }
     }

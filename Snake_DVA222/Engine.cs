@@ -85,12 +85,13 @@ namespace Snake_DVA222
             {
                 if (i % 2 == 0)
                 {
-                    // -10 is needed so that each "set" of snakes spawn with the same offset from the center.
-                    snakeCoordinate = new Coordinate(Width / 2 - 10 - i * 10, Height / 2);
+                    // "10 * GameObjectSize" is how far away it should be from the center.
+                    // i * 4 * GameObjectSize is far away it should be from snakes spawning on the same side.
+                    snakeCoordinate = new Coordinate(Width / 2 - 10 * GameObjectSize - i * 4 * GameObjectSize, Height / 2);
                 }
                 else
                 {
-                    snakeCoordinate = new Coordinate(Width / 2 + i * 10, Height / 2);
+                    snakeCoordinate = new Coordinate(Width / 2 + 9 * GameObjectSize + i * 4 * GameObjectSize, Height / 2);
                 }
                 Add(new Snake(snakeStartLength, snakeCoordinate, i + 1, this));
             }

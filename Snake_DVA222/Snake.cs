@@ -21,7 +21,7 @@ namespace Snake_DVA222
         public Snake(int length, Coordinate startPos, int playerNumber, Engine engine)
         {
             ID = playerNumber;
-            Dir = Direction.Right;
+            Dir = Direction.Up;
             Engine = engine;
             for (int i = 0; i < length; i++)
             {

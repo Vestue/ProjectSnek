@@ -23,6 +23,7 @@ namespace Snake_DVA222
             ID = playerNumber;
             Dir = Direction.Up;
             Engine = engine;
+            Colorize();
             for (int i = 0; i < length; i++)
             {
                 // startPos is the position of the head of the snake;
@@ -140,6 +141,12 @@ namespace Snake_DVA222
 
                 
             }
+        }
+
+        public void Colorize()
+        {
+            if (ID == 2)
+                pen = new SolidBrush(Color.Green);
         }
     }
 }

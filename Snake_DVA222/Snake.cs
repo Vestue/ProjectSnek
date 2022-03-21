@@ -94,6 +94,7 @@ namespace Snake_DVA222
 
         public Direction SetDirection(Direction dir) => Dir = dir;
 
+        public Direction GetDirection() => Dir;
         public List<Coordinate> GetBodyCords() => BodyCords;
 
         private void Hit()

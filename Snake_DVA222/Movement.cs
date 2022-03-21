@@ -16,10 +16,10 @@ namespace Snake_DVA222
             {
                 snake.SetDirection(Direction.Right);
             }
-            else if ((key.KeyCode == Keys.Up && snake.ID == 1) || (key.KeyCode == Keys.W && snake.ID == 1)) snake.SetDirection(Direction.Up);
-            else if ((key.KeyCode == Keys.Down && snake.ID == 1) || (key.KeyCode == Keys.S && snake.ID == 1)) snake.SetDirection(Direction.Down);
-            else if ((key.KeyCode == Keys.Left && snake.ID == 1) || (key.KeyCode == Keys.A && snake.ID == 1)) snake.SetDirection(Direction.Left);
-            else if ((key.KeyCode == Keys.Right && snake.ID == 1) || (key.KeyCode == Keys.D && snake.ID == 1)) snake.SetDirection(Direction.Right);
+            else if (((key.KeyCode == Keys.Up && snake.ID == 1) || (key.KeyCode == Keys.W && snake.ID == 1)) && (snake.GetDirection() != Direction.Down)) snake.SetDirection(Direction.Up);
+            else if (((key.KeyCode == Keys.Down && snake.ID == 1) || (key.KeyCode == Keys.S && snake.ID == 1)) && (snake.GetDirection() != Direction.Up)) snake.SetDirection(Direction.Down);
+            else if (((key.KeyCode == Keys.Left && snake.ID == 1) || (key.KeyCode == Keys.A && snake.ID == 1)) && (snake.GetDirection() != Direction.Right)) snake.SetDirection(Direction.Left);
+            else if (((key.KeyCode == Keys.Right && snake.ID == 1) || (key.KeyCode == Keys.D && snake.ID == 1)) && (snake.GetDirection() != Direction.Left)) snake.SetDirection(Direction.Right);
              
         }
     }

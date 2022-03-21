@@ -134,12 +134,15 @@ namespace Snake_DVA222
 
         public void Draw(Graphics g)
         {
+            Rectangle rect = new Rectangle();
+            rect.Width = Engine.GameObjectSize;
+            rect.Height = Engine.GameObjectSize;
             for (int i = 0; i < BodyCords.Count - 1; i++)
             {
-               
+                rect.X = BodyCords[i].X;
+                rect.Y = BodyCords[i].Y;
                 g.FillRectangle(pen, BodyCords[i].X, BodyCords[i].Y, Engine.GameObjectSize, Engine.GameObjectSize);
-
-                
+                ControlPaint.DrawBorder(g, rect, Color.Black, ButtonBorderStyle.Solid);
             }
         }
 

@@ -52,7 +52,11 @@ namespace Snake_DVA222
 
         public void Add(Snake snake) => _snakes.Add(snake);
         public void Add(Food food) => _food.Add(food);
-        public void Remove(Snake snake) => _snakes.Remove(snake);
+        public void Remove(Snake snake)
+        {
+            _snakes.Remove(snake);
+            AmountOfPlayers--;
+        }
         public void Remove(Food food) => _food.Remove(food);
 
         private void Draw(object? sender, PaintEventArgs e)
@@ -96,7 +100,6 @@ namespace Snake_DVA222
                 }
                 Add(new Snake(snakeStartLength, snakeCoordinate, i + 1, this));
             }
-            Add(new Food(Width / 2, Height / 2, this));
         }
 
         // This is triggered every time a key is pressed down after the game has been started.
@@ -132,7 +135,7 @@ namespace Snake_DVA222
         {
             // This can be changed depending on how much food should be spawned.
             // Could be a setting depending on player amount etc.
-            if (_food.Count >= 1) return;
+            if (_food.Count >= AmountOfPlayers) return;
 
             var snakes = new List<Snake>(_snakes);
             List<Coordinate> snakeCoords = new List<Coordinate>();

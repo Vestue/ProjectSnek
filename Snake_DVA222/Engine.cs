@@ -135,7 +135,7 @@ namespace Snake_DVA222
         private void TrySpawnFood()
         {
             // This can be changed depending on how much food should be spawned.
-            if (_food.Count >= AmountOfPlayers) return;
+            if (_food.Count >= _currentAmountOfPlayers) return;
 
             var snakes = new List<Snake>(_snakes);
             List<Coordinate> snakeCoords = new List<Coordinate>();

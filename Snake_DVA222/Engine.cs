@@ -15,7 +15,7 @@ namespace Snake_DVA222
         public int GameObjectSize { get; private set; }
 
         List<Snake> _snakes = new List<Snake>();
-        List<IFood> _food = new List<IFood>();
+        List<Food> _food = new List<Food>();
 
         MainForm _form;
         System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
@@ -51,14 +51,14 @@ namespace Snake_DVA222
         private void OnResize(object? sender, EventArgs e) => SetGameSizes();
 
         public void Add(Snake snake) => _snakes.Add(snake);
-        public void Add(IFood food) => _food.Add(food);
+        public void Add(Food food) => _food.Add(food);
         public void Remove(Snake snake) => _snakes.Remove(snake);
-        public void Remove(IFood food) => _food.Remove(food);
+        public void Remove(Food food) => _food.Remove(food);
 
         private void Draw(object? sender, PaintEventArgs e)
         {
             var snakes = new List<Snake>(_snakes);
-            var foods = new List<IFood>(_food);
+            var foods = new List<Food>(_food);
 
             foreach (var snake in snakes)
                 snake.Draw(e.Graphics);
@@ -85,17 +85,16 @@ namespace Snake_DVA222
             {
                 if (i % 2 == 0)
                 {
-                    // "10 * GameObjectSize" is how far away it should be from the center.
-                    // i * 4 * GameObjectSize is far away it should be from snakes spawning on the same side.
-                    snakeCoordinate = new Coordinate(Width / 2 - 10 * GameObjectSize - i * 4 * GameObjectSize, Height / 2);
+                    // -10 is needed so that each "set" of snakes spawn with the same offset from the center.
+                    snakeCoordinate = new Coordinate(Width / 2 - 10 - i * 10, Height / 2);
                 }
                 else
                 {
-                    snakeCoordinate = new Coordinate(Width / 2 + 9 * GameObjectSize + i * 4 * GameObjectSize, Height / 2);
+                    snakeCoordinate = new Coordinate(Width / 2 + i * 10, Height / 2);
                 }
                 Add(new Snake(snakeStartLength, snakeCoordinate, i + 1, this));
             }
-            Add(new orangeFood(Width / 2, Height / 2, this));
+            Add(new Food(Width / 2, Height / 2, this));
         }
 
         // This is triggered every time a key is pressed down after the game has been started.
@@ -109,7 +108,7 @@ namespace Snake_DVA222
         {
             // Try doing this without the temp lists if collisions do not trigger things as they should.
             var snakes = new List<Snake>(_snakes);
-            var foodList = new List<IFood>(_food);
+            var foodList = new List<Food>(_food);
 
             foreach (var food in foodList)
                 foreach (var snake in snakes)
@@ -145,12 +144,8 @@ namespace Snake_DVA222
                 foodCoordinate = new Coordinate(rand.Next(0, Width - GameObjectSize), rand.Next(0, Height - GameObjectSize));
             } while (snakeCoords.Contains(foodCoordinate));
 
-            // Should a food randomize its own type in the constructor?
-            var foodType = rand.Next(0, 3);
-            // This would be prettier using an enum
-            if (foodType == 0) Add(new yellowFood(foodCoordinate.X, foodCoordinate.Y, this));
-            else if (foodType == 1) Add(new orangeFood(foodCoordinate.X, foodCoordinate.Y, this));
-            else Add(new redFood(foodCoordinate.X, foodCoordinate.Y, this));
+          
+            Add(new Food(foodCoordinate.X, foodCoordinate.Y, this));
         }
 
         private void GameOver()

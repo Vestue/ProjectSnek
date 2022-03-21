@@ -56,20 +56,18 @@ namespace Snake_DVA222
        //Not totally accurate, if snake is slightly under food it will eat it
         public bool intersect(Snake snake)
         {
-
             var BodyCord = snake.GetBodyCords();
             var SnakeHeadPos = BodyCord[0];
+
+            bool withinXRange = false;
+            bool withinYRange = false;
            
-
-            float ClosestX = Math.Clamp(SnakeHeadPos.X - Square.Width/2, Square.Left, Square.Right);
-            float ClosestY = Math.Clamp(SnakeHeadPos.Y - Square.Height/2, Square.Top, Square.Bottom);
-
-            float DistanceX = SnakeHeadPos.X - ClosestX;
-            float DistanceY = SnakeHeadPos.Y - ClosestY;
-            float DistanceSqrd = (DistanceX * DistanceX) + (DistanceY * DistanceY);
-         
+            if (SnakeHeadPos.X - Engine.GameObjectSize <= Square.X && Square.X <= SnakeHeadPos.X + Engine.GameObjectSize)
+                withinXRange = true;
+            if (SnakeHeadPos.Y - Engine.GameObjectSize <= Square.Y && Square.Y <= SnakeHeadPos.Y + Engine.GameObjectSize)
+                withinYRange = true;
           
-               if(DistanceSqrd <= (Square.Width * Square.Height))
+               if(withinXRange && withinYRange)
             {
                 return true;
             }

@@ -12,7 +12,7 @@ namespace Snake_DVA222
         public int Height { get; private set; }
         public int Width { get; private set; }
         private int snakeStartLength = 5;
-        public int ObjectSize { get; } = 20;
+        public int GameObjectSize { get; private set; }
 
         List<Snake> _snakes = new List<Snake>();
         List<IFood> _food = new List<IFood>();
@@ -24,8 +24,6 @@ namespace Snake_DVA222
         public Engine()
         {
             _form = new MainForm(this);
-            Height = _form.Height;
-            Width = _form.Width;
         }
 
         public void Run() => Application.Run(_form);
@@ -57,6 +55,11 @@ namespace Snake_DVA222
 
         public void StartGame(int amountOfPlayers)
         {
+            // Make size of objects scale depending on resolution when game is started.
+            Height = _form.Height;
+            Width = _form.Width;
+            GameObjectSize = Width / 30;
+
             _form.KeyDown += KeyEventHandler;
             _form.Paint += Draw;
 

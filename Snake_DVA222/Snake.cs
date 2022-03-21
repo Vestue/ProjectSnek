@@ -21,9 +21,8 @@ namespace Snake_DVA222
         public Snake(int length, Coordinate startPos, int playerNumber, Engine engine)
         {
             ID = playerNumber;
-            Dir = Direction.Up;
+            Dir = Direction.Right;
             Engine = engine;
-            Colorize();
             for (int i = 0; i < length; i++)
             {
                 // startPos is the position of the head of the snake;
@@ -95,7 +94,6 @@ namespace Snake_DVA222
 
         public Direction SetDirection(Direction dir) => Dir = dir;
 
-        public Direction GetDirection() => Dir;
         public List<Coordinate> GetBodyCords() => BodyCords;
 
         private void Hit()
@@ -134,19 +132,19 @@ namespace Snake_DVA222
 
         public void Draw(Graphics g)
         {
+            Rectangle rect = new Rectangle();
+            rect.Width = Engine.GameObjectSize;
+            rect.Height = Engine.GameObjectSize;
+            
             for (int i = 0; i < BodyCords.Count - 1; i++)
             {
-               
-                g.FillRectangle(pen, BodyCords[i].X, BodyCords[i].Y, Engine.GameObjectSize, Engine.GameObjectSize);
+                rect.X = BodyCords[i].X;
+                rect.Y = BodyCords[i].Y;
 
+                g.FillRectangle(pen, BodyCords[i].X, BodyCords[i].Y, Engine.GameObjectSize, Engine.GameObjectSize);
+                ControlPaint.DrawBorder(g, rect, Color.Black, ButtonBorderStyle.Solid);
                 
             }
-        }
-
-        public void Colorize()
-        {
-            if (ID == 2)
-                pen = new SolidBrush(Color.Green);
         }
     }
 }

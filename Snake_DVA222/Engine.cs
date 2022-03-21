@@ -32,13 +32,23 @@ namespace Snake_DVA222
         {
             _form.KeyDown += KeyEventHandler;
             _form.Paint += Draw;
+            _form.Resize += OnResize;
+            SetGameSizes();
 
             _timer.Tick += TimerEventHandler;
             _timer.Interval = 1000 / 30; // 30 fps lets goo
 
             Application.Run(_form);
         }
-            
+
+        private void SetGameSizes()
+        {
+            Height = _form.Height;
+            Width = _form.Width;
+            GameObjectSize = Width / 80;
+        }
+
+        private void OnResize(object? sender, EventArgs e) => SetGameSizes();
 
         public void Add(Snake snake) => _snakes.Add(snake);
         public void Add(IFood food) => _food.Add(food);
@@ -67,11 +77,6 @@ namespace Snake_DVA222
 
         public void StartGame(int amountOfPlayers)
         {
-            // Make size of objects scale depending on resolution when game is started.
-            Height = _form.Height;
-            Width = _form.Width;
-            GameObjectSize = Width / 40;
-            
             _timer.Start();
 
             AmountOfPlayers = amountOfPlayers;

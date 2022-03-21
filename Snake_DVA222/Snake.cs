@@ -9,7 +9,9 @@ namespace Snake_DVA222
     internal class Snake
     {
         Direction Dir;
-        Pen pen = new Pen(Color.Purple);
+        SolidBrush pen = new SolidBrush(Color.Purple);
+
+        
         public int Points { get; set; } = 0;
         List<Coordinate> BodyCords = new List<Coordinate>();
         int BodyPartsToAdd = 0;
@@ -25,7 +27,7 @@ namespace Snake_DVA222
             {
                 // startPos is the position of the head of the snake;
                 // The snake's body is placed in the opposite direction of the starting direction
-                switch(Dir)
+                switch (Dir)
                 {
                     case Direction.Up:
                         BodyCords.Add(new Coordinate(startPos.X, startPos.Y + i * Engine.GameObjectSize));
@@ -70,7 +72,7 @@ namespace Snake_DVA222
             switch (Dir)
             {
                 case Direction.Up:
-                    if (BodyCords[0].Y - 1 < 0) {  Hit(); }
+                    if (BodyCords[0].Y - 1 < 0) { Hit(); }
                     BodyCords.Insert(0, new Coordinate(BodyCords[0].X, BodyCords[0].Y - Engine.GameObjectSize));
                     break;
                 case Direction.Down:
@@ -108,7 +110,7 @@ namespace Snake_DVA222
         }
 
         public bool SnakeCollide(Snake snake)
-        {            
+        {
             // Works for both other snakes and itself
             if (snake == null) throw new ArgumentNullException();
 
@@ -130,9 +132,12 @@ namespace Snake_DVA222
 
         public void Draw(Graphics g)
         {
-            for(int i = 0; i < BodyCords.Count - 1; i++)
+            for (int i = 0; i < BodyCords.Count - 1; i++)
             {
-                g.DrawRectangle(pen, BodyCords[i].X, BodyCords[i].Y, Engine.GameObjectSize, Engine.GameObjectSize);
+               
+                g.FillRectangle(pen, BodyCords[i].X, BodyCords[i].Y, Engine.GameObjectSize, Engine.GameObjectSize);
+
+                
             }
         }
     }

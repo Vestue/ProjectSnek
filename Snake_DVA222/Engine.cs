@@ -59,7 +59,7 @@ namespace Snake_DVA222
         {
             var snakes = new List<Snake>(_snakes);
             var foods = new List<IFood>(_food);
-            
+
             foreach (var snake in snakes)
                 snake.Draw(e.Graphics);
             foreach (var food in foods)
@@ -92,15 +92,15 @@ namespace Snake_DVA222
                 {
                     snakeCoordinate = new Coordinate(Width / 2 + i * 10, Height / 2);
                 }
-                Add(new Snake(snakeStartLength, snakeCoordinate, i+1, this));
+                Add(new Snake(snakeStartLength, snakeCoordinate, i + 1, this));
             }
-            Add(new orangeFood(Width / 2, Height / 2));
+            Add(new orangeFood(Width / 2, Height / 2, this));
         }
 
         // This is triggered every time a key is pressed down after the game has been started.
         private void KeyEventHandler(object? sender, KeyEventArgs e)
         {
-            foreach(var snake in _snakes)
+            foreach (var snake in _snakes)
                 _movement.Move(e, snake);
         }
 
@@ -109,9 +109,10 @@ namespace Snake_DVA222
             // Try doing this without the temp lists if collisions do not trigger things as they should.
             var snakes = new List<Snake>(_snakes);
             var foodList = new List<IFood>(_food);
-            
+
             foreach (var food in foodList)
                 foreach (var snake in snakes)
+                    if(food.intersect(snake))
                     food.TryHit(snake);
             foreach (var snake in snakes)
                 foreach (var otherSnake in snakes)
@@ -140,15 +141,15 @@ namespace Snake_DVA222
             {
                 // This randomization should use the min and max x-y values of the game area,
                 // not sure if it currently does this.
-                foodCoordinate = new Coordinate(rand.Next(0, Width), rand.Next(0, Height));
+                foodCoordinate = new Coordinate(rand.Next(0, Width - GameObjectSize), rand.Next(0, Height - GameObjectSize));
             } while (snakeCoords.Contains(foodCoordinate));
 
             // Should a food randomize its own type in the constructor?
-            var foodType = rand.Next(0, 2);
+            var foodType = rand.Next(0, 3);
             // This would be prettier using an enum
-            if (foodType == 0) Add(new yellowFood(foodCoordinate.X, foodCoordinate.Y));
-            else if (foodType == 1) Add(new orangeFood(foodCoordinate.X, foodCoordinate.Y));
-            else Add(new redFood(foodCoordinate.X, foodCoordinate.Y));
+            if (foodType == 0) Add(new yellowFood(foodCoordinate.X, foodCoordinate.Y, this));
+            else if (foodType == 1) Add(new orangeFood(foodCoordinate.X, foodCoordinate.Y, this));
+            else Add(new redFood(foodCoordinate.X, foodCoordinate.Y, this));
         }
 
         private void GameOver()

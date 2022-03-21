@@ -11,27 +11,61 @@ namespace Snake_DVA222
 {
     internal class redFood : IFood
     {
-        Pen pen = new Pen(Color.Red);
+        
+        SolidBrush pen = new SolidBrush(Color.Red);
+        Pen outline = new Pen(Color.Black);
         int value;
-         Rectangle Square = new Rectangle();
-       public redFood(int x, int y)
+        int points;
+        
+        Rectangle Square = new Rectangle();
+        Engine Engine;
+       public redFood(int x, int y, Engine engine)
         {
-            Square.Width = 50;
-            Square.Height = 50;
+            Engine = engine;
+            Square.Width = Engine.GameObjectSize;
+            Square.Height = Engine.GameObjectSize;
             Square.X = x;
             Square.Y = y;
-            value = 5;
+            points = 5;
+            value = 2;
+            
 
         }
 
 
         public void Draw(Graphics g)
         {
-            g.DrawRectangle(pen, Square);
+                 
+            g.FillRectangle(pen, Square);        
+
+           
             
 
         }
-      
+
+        public bool intersect(Snake snake)
+        {
+
+            var BodyCord = snake.GetBodyCords();
+            var SnakeHeadPos = BodyCord[0];
+
+
+            float ClosestX = Math.Clamp(SnakeHeadPos.X - Square.Width / 2, Square.Left, Square.Right);
+            float ClosestY = Math.Clamp(SnakeHeadPos.Y - Square.Height / 2, Square.Top, Square.Bottom);
+
+            float DistanceX = (SnakeHeadPos.X - Square.Width / 2) - ClosestX;
+            float DistanceY = (SnakeHeadPos.Y - Square.Height / 2) - ClosestY;
+            float DistanceSqrd = (DistanceX * DistanceX) + (DistanceY * DistanceY);
+
+
+            if (DistanceSqrd <= (Square.Width * Square.Height))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public int returnPoints()
         {
 
@@ -40,7 +74,10 @@ namespace Snake_DVA222
 
         public void TryHit(Snake snake)
         {
-            throw new NotImplementedException();
+            snake.Hit(points, value);
+            Engine.Remove(this);
+
+
         }
     }
 }

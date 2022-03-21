@@ -9,6 +9,7 @@ namespace Snake_DVA222
     internal class Engine
     {
         public int AmountOfPlayers { get; private set; }
+        private int _currentAmountOfPlayers;
         public int Height { get; private set; }
         public int Width { get; private set; }
         private int snakeStartLength = 5;
@@ -55,7 +56,7 @@ namespace Snake_DVA222
         public void Remove(Snake snake)
         {
             _snakes.Remove(snake);
-            AmountOfPlayers--;
+            _currentAmountOfPlayers--;
         }
         public void Remove(Food food) => _food.Remove(food);
 
@@ -84,7 +85,7 @@ namespace Snake_DVA222
         {
             _timer.Start();
 
-            AmountOfPlayers = amountOfPlayers;
+            _currentAmountOfPlayers = AmountOfPlayers = amountOfPlayers;
             Coordinate snakeCoordinate;
             for (int i = 0; i < amountOfPlayers; i++)
             {
@@ -134,7 +135,6 @@ namespace Snake_DVA222
         private void TrySpawnFood()
         {
             // This can be changed depending on how much food should be spawned.
-            // Could be a setting depending on player amount etc.
             if (_food.Count >= AmountOfPlayers) return;
 
             var snakes = new List<Snake>(_snakes);
@@ -145,8 +145,7 @@ namespace Snake_DVA222
             Random rand = new Random();
             do
             {
-                // This randomization should use the min and max x-y values of the game area,
-                // not sure if it currently does this.
+                // This randomization should use the min and max x-y values of the game area.
                 foodCoordinate = new Coordinate(rand.Next(0, Width - GameObjectSize), rand.Next(0, Height - GameObjectSize));
             } while (snakeCoords.Contains(foodCoordinate));
 
@@ -168,6 +167,8 @@ namespace Snake_DVA222
             string scoreString = "";
             foreach (var snake in snakes)
                 scoreString += $"Player {snake.ID}: {snake.Points}\r\n";
+            if (_currentAmountOfPlayers == 1 && AmountOfPlayers > 1)
+                scoreString += "WINNER!";
             return scoreString;
         }
     }

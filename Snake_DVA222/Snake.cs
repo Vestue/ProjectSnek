@@ -129,6 +129,7 @@ namespace Snake_DVA222
                 if (BodyCords[0].X == otherBodyCords[i].X && BodyCords[0].Y == otherBodyCords[i].Y)
                 {
                     Hit();
+                    snake.Points += 10;
                     return true;
                 }
             }

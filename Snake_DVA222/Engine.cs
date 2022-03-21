@@ -62,7 +62,7 @@ namespace Snake_DVA222
         private void Draw(object? sender, PaintEventArgs e)
         {
             var snakes = new List<Snake>(_snakes);
-            var foods = new List<Food>(_food);
+            var foods = new List<IFood>(_food);
 
             foreach (var snake in snakes)
                 snake.Draw(e.Graphics);

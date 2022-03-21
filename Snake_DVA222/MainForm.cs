@@ -18,12 +18,16 @@ namespace Snake_DVA222
         private void button1_Click(object sender, EventArgs e)
         {
             ClearForm();
+            ScoreDisplay.Enabled = true;
+            ScoreDisplay.Visible = true;
             if (_engine != null) _engine.StartGame(1);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             ClearForm();
+            ScoreDisplay.Enabled = true;
+            ScoreDisplay.Visible = true;
             if (_engine != null) _engine.StartGame(2);
         }
 
@@ -68,6 +72,8 @@ namespace Snake_DVA222
             button3.Visible = true;
             textBox1.Visible = true;
             textBox1.Enabled = true;
+            ScoreDisplay.Enabled = false;
+            ScoreDisplay.Visible = false;
         }
     }
 }

@@ -112,6 +112,7 @@
             this.ScoreDisplay.TabIndex = 5;
             this.ScoreDisplay.Text = "label1\r\ntext\r\ntext";
             this.ScoreDisplay.Visible = false;
+
             // 
             // MainForm
             // 
@@ -140,6 +141,6 @@
         private Button button3;
         private TextBox textBox1;
         private PictureBox pictureBox1;
-        private Label ScoreDisplay;
+        public Label ScoreDisplay;
     }
 }

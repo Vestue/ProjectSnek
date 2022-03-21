@@ -68,6 +68,7 @@ namespace Snake_DVA222
 
         private void TimerEventHandler(object? sender, EventArgs e)
         {
+            _form.ScoreDisplay.Text = GetScoreString();
             _form.Refresh();
             Collide();
             Move();
@@ -156,6 +157,15 @@ namespace Snake_DVA222
             _food.Clear();
             _timer.Stop();
             _form.RestartMenu();
+        }
+
+        public string GetScoreString()
+        {
+            var snakes = new List<Snake>(_snakes);
+            string scoreString = "Score:\r\n";
+            foreach (var snake in snakes)
+                scoreString += $"\r\nPlayer {snake.ID}: {snake.GetPoints}";
+            return scoreString;
         }
     }
 }

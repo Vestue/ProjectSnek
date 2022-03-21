@@ -101,6 +101,7 @@ namespace Snake_DVA222
         // This is triggered every time a key is pressed down after the game has been started.
         private void KeyEventHandler(object? sender, KeyEventArgs e)
         {
+            e.SuppressKeyPress = true;
             foreach (var snake in _snakes)
                 _movement.Move(e, snake);
         }

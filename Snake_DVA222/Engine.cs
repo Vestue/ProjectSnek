@@ -44,7 +44,7 @@ namespace Snake_DVA222
         private void SetGameSizes()
         {
             Height = _form.Height - _form.Height / 16;
-            Width = _form.Width - _form.Width / 36;
+            Width = _form.Width - _form.Width / 40;
             GameObjectSize = Width / 80;
         }
 

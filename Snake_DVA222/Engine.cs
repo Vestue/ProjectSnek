@@ -9,14 +9,13 @@ namespace Snake_DVA222
     internal class Engine
     {
         public int AmountOfPlayers { get; private set; }
-        private int _currentAmountOfPlayers;
         public int Height { get; private set; }
         public int Width { get; private set; }
         private int snakeStartLength = 5;
         public int GameObjectSize { get; private set; }
 
         List<Snake> _snakes = new List<Snake>();
-        List<Food> _food = new List<Food>();
+        List<IFood> _food = new List<IFood>();
 
         MainForm _form;
         System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
@@ -56,7 +55,7 @@ namespace Snake_DVA222
         public void Remove(Snake snake)
         {
             _snakes.Remove(snake);
-            _currentAmountOfPlayers--;
+            AmountOfPlayers--;
         }
         public void Remove(Food food) => _food.Remove(food);
 
@@ -85,7 +84,7 @@ namespace Snake_DVA222
         {
             _timer.Start();
 
-            _currentAmountOfPlayers = AmountOfPlayers = amountOfPlayers;
+            AmountOfPlayers = amountOfPlayers;
             Coordinate snakeCoordinate;
             for (int i = 0; i < amountOfPlayers; i++)
             {
@@ -93,11 +92,13 @@ namespace Snake_DVA222
                 {
                     // "10 * GameObjectSize" is how far away it should be from the center.
                     // i * 4 * GameObjectSize is far away it should be from snakes spawning on the same side.
-                    snakeCoordinate = new Coordinate(Width / 2 - 10 * GameObjectSize - i * 4 * GameObjectSize, Height / 2);
+                    // EXTENSION
+                    // GameObjectSize * Math.Abs(i / 2) makes sure evenly snakes spawning on the same side don't spawn on top of each other
+                    snakeCoordinate = new Coordinate(Width / 2 - 10 * GameObjectSize - i * 4 * GameObjectSize - GameObjectSize * Math.Abs(i / 2), Height / 2);
                 }
                 else
                 {
-                    snakeCoordinate = new Coordinate(Width / 2 + 9 * GameObjectSize + i * 4 * GameObjectSize, Height / 2);
+                    snakeCoordinate = new Coordinate(Width / 2 + 9 * GameObjectSize + i * 4 * GameObjectSize + GameObjectSize * Math.Abs(i / 2), Height / 2);
                 }
                 Add(new Snake(snakeStartLength, snakeCoordinate, i + 1, this));
             }
@@ -115,7 +116,7 @@ namespace Snake_DVA222
         {
             // Try doing this without the temp lists if collisions do not trigger things as they should.
             var snakes = new List<Snake>(_snakes);
-            var foodList = new List<Food>(_food);
+            var foodList = new List<IFood>(_food);
 
             foreach (var food in foodList)
                 foreach (var snake in snakes)
@@ -135,7 +136,8 @@ namespace Snake_DVA222
         private void TrySpawnFood()
         {
             // This can be changed depending on how much food should be spawned.
-            if (_food.Count >= _currentAmountOfPlayers) return;
+            // Could be a setting depending on player amount etc.
+            if (_food.Count >= AmountOfPlayers) return;
 
             var snakes = new List<Snake>(_snakes);
             List<Coordinate> snakeCoords = new List<Coordinate>();
@@ -145,13 +147,26 @@ namespace Snake_DVA222
             Random rand = new Random();
             do
             {
-                // This randomization should use the min and max x-y values of the game area.
+                // This randomization should use the min and max x-y values of the game area,
+                // not sure if it currently does this.
                 foodCoordinate = new Coordinate(rand.Next(0, Width - GameObjectSize), rand.Next(0, Height - GameObjectSize));
             } while (snakeCoords.Contains(foodCoordinate));
 
-          
-            Add(new Food(foodCoordinate.X, foodCoordinate.Y, this));
+            // EXTENSION
+            // Added chance for FoodControls to spawn
+            if (rand.Next(0, 5) == 4)
+            {
+                Add(new FoodControls(foodCoordinate.X, foodCoordinate.Y, this));
+            }
+            else
+            {
+                Add(new Food(foodCoordinate.X, foodCoordinate.Y, this));
+            }
         }
+
+        // EXTENSION
+        // For special Food to be able to select a random snake we need to expose the snakes
+        public List<Snake> GetSnakes() => _snakes;
 
         private void GameOver()
         {
@@ -167,8 +182,6 @@ namespace Snake_DVA222
             string scoreString = "";
             foreach (var snake in snakes)
                 scoreString += $"Player {snake.ID}: {snake.Points}\r\n";
-            if (_currentAmountOfPlayers == 1 && AmountOfPlayers > 1)
-                scoreString += "WINNER!";
             return scoreString;
         }
     }

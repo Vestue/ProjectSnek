@@ -11,14 +11,16 @@ namespace Snake_DVA222
 {
     internal class Food : IFood
     {
-        SolidBrush pen = new SolidBrush(Color.White);
-        int value;
-        int points;
+        // EXTENSION
+        // Added protected so these variables can be used
+        protected SolidBrush pen = new SolidBrush(Color.White);
+        protected int value;
+        protected int points;
         Random random = new Random();
         int color;
         
-        Rectangle Square = new Rectangle();
-        Engine Engine;
+        protected Rectangle Square = new Rectangle();
+        protected Engine Engine;
        public Food(int x, int y, Engine engine)
         {
             Engine = engine;
@@ -47,6 +49,10 @@ namespace Snake_DVA222
                     
                     break;
             }
+
+            
+            
+
         }
 
 
@@ -83,7 +89,7 @@ namespace Snake_DVA222
             return value;
         }
 
-        public void TryHit(Snake snake)
+        public virtual void TryHit(Snake snake)
         {
             snake.Hit(points, value);
             Engine.Remove(this);

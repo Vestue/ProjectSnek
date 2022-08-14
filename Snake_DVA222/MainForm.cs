@@ -15,6 +15,9 @@ namespace Snake_DVA222
 
         }
 
+        // EXTENSION
+        // (Not really an extension) Changed color to match a flag
+        // Also changed text color to white for added visibility 
         private void button1_Click(object sender, EventArgs e)
         {
             ClearForm();
@@ -23,6 +26,9 @@ namespace Snake_DVA222
             if (_engine != null) _engine.StartGame(1);
         }
 
+        // EXTENSION
+        // (Not really an extension) Changed color to match a flag
+        // Also changed text color to white for added visibility 
         private void button2_Click(object sender, EventArgs e)
         {
             ClearForm();
@@ -31,7 +37,19 @@ namespace Snake_DVA222
             if (_engine != null) _engine.StartGame(2);
         }
 
+        // EXTENSION
+        // Button for 3 players, exitButton was formerly called button 3
         private void button3_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+            ScoreDisplay.Enabled = true;
+            ScoreDisplay.Visible = true;
+            if (_engine != null) _engine.StartGame(3);
+        }
+
+        // EXTENSION
+        // exitButton was formerly called button 3
+        private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
@@ -56,6 +74,8 @@ namespace Snake_DVA222
             button2.Visible = false;
             button3.Enabled = false;
             button3.Visible = false;
+            exitButton.Enabled = false;
+            exitButton.Visible = false;
             textBox1.Visible = false;
             textBox1.Enabled = false;
         }
@@ -70,6 +90,8 @@ namespace Snake_DVA222
             button2.Visible = true;
             button3.Enabled = true;
             button3.Visible = true;
+            exitButton.Enabled = true;
+            exitButton.Visible = true;
             textBox1.Visible = true;
             textBox1.Enabled = true;
             ScoreDisplay.Enabled = false;
